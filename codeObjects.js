@@ -32,11 +32,14 @@ class variable {
             input2.addEventListener("change", () => {
                 this.value = input2.value;
             })
+            let wrapper = document.createElement("div");
+            wrapper.classList.add("wrapper");
             codeEl.appendChild(title);
-            codeEl.appendChild(text);
-            codeEl.appendChild(input);
-            codeEl.appendChild(text2);
-            codeEl.appendChild(input2);
+            wrapper.appendChild(text);
+            wrapper.appendChild(input);
+            wrapper.appendChild(text2);
+            wrapper.appendChild(input2);
+            codeEl.appendChild(wrapper);
             return codeEl;
     }
 
@@ -51,6 +54,7 @@ class math {
 
     constructor() {
         this.operations = ["+", "-", "*", "/"];
+        this.operation = "";
         this.assignTo = "";
         this.value1 = "";
         this.value2 = "";
@@ -66,27 +70,50 @@ class math {
         let title = document.createElement("p");
         title.innerHTML = this.text;
         title.classList.add("title");
-        let input0 = document.createElement("input");
-        input0.type = "text";
+        let inputZero = document.createElement("input");
+        inputZero.type = "text";
+        inputZero.addEventListener("change", () => {
+            this.assignTo = inputZero.value;
+        })
         let input = document.createElement("input");
         input.type = "text";
+        input.addEventListener("change", () => {
+            this.value1 = input.value;
+        })
         let choose = document.createElement("select");
+        choose.innerHTML += "<option value='' selected></option>"
         for (let i=0; i<this.operations.length; i++) {
             let option = document.createElement("option");
+            option.value = this.operations[i];
             option.innerHTML = this.operations[i];
             choose.append(option);
         }
+        choose.addEventListener("change", () => {
+            this.operation = choose.value;
+        })
         let input2 = document.createElement("input");
         input2.type = "text";
+        input2.addEventListener("change", () => {
+            this.value2 = input2.value;
+        })
         let text = document.createElement("p");
+        let wrapper = document.createElement("div");
+        wrapper.classList.add("wrapper");
         codeEl.appendChild(title);
-        codeEl.appendChild(input0);
-        codeEl.innerHTML += "=";
-        codeEl.appendChild(input);
-        codeEl.appendChild(choose);
-        codeEl.appendChild(input2);
-        codeEl.appendChild(text);
+        wrapper.appendChild(inputZero);
+        text.innerHTML = "=";
+        wrapper.appendChild(text);
+        wrapper.appendChild(input);
+        wrapper.appendChild(choose);
+        wrapper.appendChild(input2);
+        codeEl.appendChild(wrapper);
         return codeEl;
+    }
+
+    generatePHPCode = function() {
+        return `
+        $${this.assignTo} = $${this.value1} ${this.operation} $${this.value2};
+        `
     }
     
 }
@@ -132,10 +159,13 @@ class func {
         
         let insideDiv = document.createElement("div");
         insideDiv.classList.add("insideDiv");
+        let wrapper = document.createElement("div");
+        wrapper.classList.add("wrapper");
         codeEl.appendChild(title);
-        codeEl.appendChild(input);
-        codeEl.appendChild(text);
-        codeEl.appendChild(button);
+        wrapper.appendChild(input);
+        wrapper.appendChild(text);
+        wrapper.appendChild(button);
+        codeEl.appendChild(wrapper);
         codeEl.appendChild(insideDiv);
         codeEl.addEventListener("drop", (e) => {
             e.preventDefault();
@@ -200,13 +230,16 @@ class forLoop {
         input4.addEventListener("change", () => {
             this.variable = input4.value;
         })
+        let wrapper = document.createElement("div");
+        wrapper.classList.add("wrapper");
         codeEl.appendChild(title);
-        codeEl.appendChild(text4);
-        codeEl.appendChild(input4);
-        codeEl.appendChild(text);
-        codeEl.appendChild(start);
-        codeEl.appendChild(text2);
-        codeEl.appendChild(end);
+        wrapper.appendChild(text4);
+        wrapper.appendChild(input4);
+        wrapper.appendChild(text);
+        wrapper.appendChild(start);
+        wrapper.appendChild(text2);
+        wrapper.appendChild(end);
+        codeEl.appendChild(wrapper);
         let insideDiv = document.createElement("div");
         insideDiv.classList.add("insideDiv");
         codeEl.appendChild(insideDiv);
@@ -229,7 +262,7 @@ class forLoop {
 
 class condition {
     id = "4";
-    text = "Condition";
+    text = "If Condition";
 
     constructor() {
         this.canHaveChildren = true;
@@ -250,6 +283,8 @@ class condition {
         let title = document.createElement("p");
         title.innerHTML = this.text;
         title.classList.add("title");
+        let text = document.createElement("p");
+        text.innerHTML = "IF";
         let input = document.createElement("input");
         input.type = "text";
         input.addEventListener("change", () => {
@@ -272,10 +307,14 @@ class condition {
         input2.addEventListener("change", () => {
             this.var2 = input2.value;
         })
+        let wrapper = document.createElement("div");
+        wrapper.classList.add("wrapper");
+        wrapper.appendChild(text);
+        wrapper.appendChild(input);
+        wrapper.appendChild(choose);
+        wrapper.appendChild(input2);
         codeEl.appendChild(title);
-        codeEl.appendChild(input);
-        codeEl.appendChild(choose);
-        codeEl.appendChild(input2);
+        codeEl.appendChild(wrapper);
         let insideDiv = document.createElement("div");
         insideDiv.classList.add("insideDiv");
         codeEl.appendChild(insideDiv);
@@ -320,9 +359,12 @@ class print {
         })
         let text = document.createElement("p");
         text.innerHTML = "Print";
+        let wrapper = document.createElement("div");
+        wrapper.classList.add("wrapper");
         codeEl.appendChild(title);
-        codeEl.appendChild(text);
-        codeEl.appendChild(input);
+        wrapper.appendChild(text);
+        wrapper.appendChild(input);
+        codeEl.appendChild(wrapper);
         return codeEl;
     }
 
@@ -382,10 +424,13 @@ class funcCall {
 
         let text = document.createElement("p");
         text.innerHTML = "Call Function";
+        let wrapper = document.createElement("div");
+        wrapper.classList.add("wrapper");
         codeEl.appendChild(title);
-        codeEl.appendChild(text);
-        codeEl.appendChild(select);
-        codeEl.appendChild(params);
+        wrapper.appendChild(text);
+        wrapper.appendChild(select);
+        wrapper.appendChild(params);
+        codeEl.appendChild(wrapper);
         return codeEl;
     }
 }

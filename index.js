@@ -34,6 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
         newCodeBlock.classList.add("codeElement");
         newCodeBlock.id = codeBlocks[i].id;
         newCodeBlock.innerHTML = codeBlocks[i].text;
+        newCodeBlock.style.backgroundColor = codeBlocks[i].color;
         newCodeBlock.draggable = "true";
         newCodeBlock.setAttribute('ondragstart', "dragstart_handler(event)");
         parent.appendChild(newCodeBlock);
@@ -57,10 +58,11 @@ function drop_handler(e) {
     const data = e.dataTransfer.getData("application/my-app");
     const source = document.getElementById(data);
     const target = getFertileParent(e.target);
-    let codeBlock = createCodeBlock(source, target);
     if (target == document.getElementById("codeBlocks")) {
+        let codeBlock = createCodeBlock(source, target);
         globalObjs.push(codeBlock);
     } else {
+        let codeBlock = createCodeBlock(source, target.getElementsByClassName("insideDiv")[0]);
         return codeBlock;
     } 
 }

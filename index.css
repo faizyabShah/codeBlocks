@@ -36,8 +36,9 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 10px;
+    border-radius: 20px;
     background-color: #8b8b8b;
+    min-width: 90px;
     margin: 10px;
     padding: 10px;
     font-weight: bold;
@@ -46,18 +47,19 @@ body {
 .codeInstance {
     display: flex;
     position: relative;
+    flex-direction: column;
     justify-content: flex-start;
     flex-wrap: wrap;
-    align-items: center;
+    border: 1px solid black;
     border-radius: 10px;
     background-color: #8b8b8b;
     margin-right: 30px;
     margin-bottom: 10px;
-    padding: 20px;
+    padding-left: 20px;
     padding-top: 35px;
 }
 
-.codeInstance > * {
+.codeInstance  * {
     margin: 5px;
     font-weight: bold;
 }
@@ -71,14 +73,18 @@ body {
     padding: 5px;
 }
 
-.params > input {
+.codeInstance input {
+    text-align: center;
+}
+
+.params input {
     margin-left: 10px;
 }
 
-.codeInstance > select {
+.codeInstance select {
     width: 70px;
 }
-.codeInstance > button {
+.codeInstance button {
     border: none;
     border-radius: 30px;
     height: 30px;
@@ -89,7 +95,7 @@ body {
     font-weight: bold;
 }
 
-.codeInstance > .title {
+.codeInstance .title {
     font-size: 1rem;
     font-weight: bold;
     position: absolute;
@@ -98,7 +104,36 @@ body {
 }
 
 .codeInstance.print{
-    background-color: rgba(0, 255, 255,0.5);
+    background-color: rgb(152, 255, 169);
+}
+
+.codeInstance.variable {
+    background-color: rgb(152, 255, 169);
+}
+
+.codeInstance.forLoop {
+    background-color: rgb(255, 221, 69)
+}
+
+.codeInstance.ifCondition {
+    background-color: rgb(171, 68, 255);
+}
+
+.codeInstance.math {
+    background-color: rgb(255, 131, 131);
+}
+
+.codeInstance.function {
+    background-color: rgb(106, 156, 255);
+}
+
+.codeInstance.funcCall {
+    background-color: rgb(106, 156, 255);
+}
+
+.codeInstance .wrapper {
+    display: flex;
+    align-items: center;
 }
 
 .phpOutput {
@@ -109,9 +144,4 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-radius: 10px;
-    background-color: rgba(255, 0, 55, 0.5);
-    margin-right: 30px;
-    margin-bottom: 10px;
-    padding: 10px;
 }

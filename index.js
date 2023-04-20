@@ -3,14 +3,12 @@ let insideDivs = 0;
 
 function _generatePHP (arr, indent = "") {
     let code = "";
-    // console.log(arr.length);
     for (let i=0; i<arr.length; i++) {
-        // console.log(i)
         if (arr[i].render) {
             if (arr[i].canHaveChildren) {
                 code += indent + arr[i].generatePHPCode() + "<br>";
                 if (arr[i].children.length > 0) {
-                    code += _generatePHP(arr[i].children, indent + "    ") + "<br>";
+                    code += _generatePHP(arr[i].children, indent + "    ");
                 }
                 code += indent + "} <br>"
             } else {
@@ -24,7 +22,7 @@ function _generatePHP (arr, indent = "") {
 function generatePHP(arr = globalObjs) {
     let code = _generatePHP(arr);
     code = code.replace(/ /g, "&nbsp;");
-    document.getElementById("phpOutput").innerHTML = code;
+    document.getElementById("phpCodeOutput").innerHTML = code;
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -98,6 +96,14 @@ function createCodeBlock(source, target) {
             return codeBlock;
         case "6":
             codeBlock = new funcCall();
+            target.appendChild(codeBlock.makeDiv());
+            return codeBlock;
+        case "7":
+            codeBlock = new elseIf();
+            target.appendChild(codeBlock.makeDiv());
+            return codeBlock;
+        case "8":
+            codeBlock = new Else();
             target.appendChild(codeBlock.makeDiv());
             return codeBlock;
     }

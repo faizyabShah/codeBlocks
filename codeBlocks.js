@@ -34,5 +34,15 @@ let codeBlocks = [
         id: "6",
         text: "Function Call",
         color: "rgb(106, 156, 255)",
-    },     
+    },
+    {
+        id: "7",
+        text: "Else if",
+        color: "rgb(171, 68, 255)",
+    },
+    {
+        id: "8",
+        text: "Else",
+        color: "rgb(171, 68, 255)",
+    }
 ]

@@ -22,6 +22,7 @@ class variable {
             text.innerHTML = "Set";
             let input = document.createElement("input");
             input.type = "text";
+            input.placeholder = "Variable Name";
             input.addEventListener("change", () => {
                 this.name = input.value;
             })
@@ -29,6 +30,7 @@ class variable {
             text2.innerHTML = "To";
             let input2 = document.createElement("input");
             input2.type = "text";
+            input2.placeholder = "String/Num"
             input2.addEventListener("change", () => {
                 this.value = input2.value;
             })
@@ -72,11 +74,13 @@ class math {
         title.classList.add("title");
         let inputZero = document.createElement("input");
         inputZero.type = "text";
+        inputZero.placeholder = "Variable";
         inputZero.addEventListener("change", () => {
             this.assignTo = inputZero.value;
         })
         let input = document.createElement("input");
         input.type = "text";
+        input.placeholder = "Variable/value";
         input.addEventListener("change", () => {
             this.value1 = input.value;
         })
@@ -93,6 +97,7 @@ class math {
         })
         let input2 = document.createElement("input");
         input2.type = "text";
+        input2.placeholder = "Variable/value";
         input2.addEventListener("change", () => {
             this.value2 = input2.value;
         })
@@ -112,7 +117,7 @@ class math {
 
     generatePHPCode = function() {
         return `
-        $${this.assignTo} = $${this.value1} ${this.operation} $${this.value2};
+        $${this.assignTo} = ${this.value1} ${this.operation} ${this.value2};
         `
     }
     
@@ -141,6 +146,7 @@ class func {
         title.classList.add("title");
         let input = document.createElement("input");
         input.type = "text";
+        input.placeholder = "Name";
         input.addEventListener("change", () => {
             this.name = input.value;
         })
@@ -151,10 +157,11 @@ class func {
         button.addEventListener("click", () => {
             let input = document.createElement("input");
             input.type = "text";
+            input.placeholder = "Variable name";
             input.addEventListener("change", () => {
                 this.parameters[this.parameters.length] = input.value;
             })
-            codeEl.appendChild(input);
+            wrapper.appendChild(input);
         })
         
         let insideDiv = document.createElement("div");
@@ -213,6 +220,7 @@ class forLoop {
         text.innerHTML = "From";
         let start = document.createElement("input");
         start.type = "text";
+        start.placeholder = "Number";
         start.addEventListener("change", () => {
             this.start = start.value;
         })
@@ -220,6 +228,7 @@ class forLoop {
         text2.innerHTML = "To";
         let end = document.createElement("input");
         end.type = "text";
+        end.placeholder = "Number";
         end.addEventListener("change", () => {
             this.end = end.value;
         })
@@ -227,6 +236,7 @@ class forLoop {
         text4.innerHTML = "Variable";
         let input4 = document.createElement("input");
         input4.type = "text";
+        input4.placeholder = "variable name";
         input4.addEventListener("change", () => {
             this.variable = input4.value;
         })
@@ -287,6 +297,7 @@ class condition {
         text.innerHTML = "IF";
         let input = document.createElement("input");
         input.type = "text";
+        input.placeholder = "Variable/Value";
         input.addEventListener("change", () => {
             this.var1 = input.value;
         })
@@ -304,6 +315,7 @@ class condition {
         choose.innerHTML += "<option value='' selected></option>";
         let input2 = document.createElement("input");
         input2.type = "text";
+        input2.placeholder = "Variable/value";
         input2.addEventListener("change", () => {
             this.var2 = input2.value;
         })
@@ -329,7 +341,7 @@ class condition {
     }
 
     generatePHPCode = function() {
-        let code = "if ($" + this.var1 + " " + this.comparator + " $" + this.var2 + ") {";
+        let code = "if (" + this.var1 + " " + this.comparator + " " + this.var2 + ") {";
         return code;
     }
 }
@@ -354,6 +366,7 @@ class print {
         title.classList.add("title");
         let input = document.createElement("input");
         input.type = "text";
+        input.placeholder = "Variable/value";
         input.addEventListener("change", () => {
             this.value = input.value;
         })
@@ -433,4 +446,125 @@ class funcCall {
         codeEl.appendChild(wrapper);
         return codeEl;
     }
+}
+
+
+class elseIf {
+    id = "7";
+    text = "Else if";
+
+    constructor() {
+        this.canHaveChildren = true;
+        this.children = [];
+        this.render = true;
+        this.comparators = [">", "<", "==", ">=", "<=", "!="];
+        this.var1 = "";
+        this.var2 = "";
+        this.comparator = "";
+    }
+
+    makeDiv = function() {
+        let codeEl = document.createElement("div");
+        codeEl.classList.add("codeInstance");
+        codeEl.classList.add("elseIfCondition");
+        codeEl.classList.add("allowsNesting");
+        codeEl.id = this.id;
+        let title = document.createElement("p");
+        title.innerHTML = this.text;
+        title.classList.add("title");
+        let text = document.createElement("p");
+        text.innerHTML = "IF";
+        let input = document.createElement("input");
+        input.type = "text";
+        input.placeholder = "Variable/Value";
+        input.addEventListener("change", () => {
+            this.var1 = input.value;
+        })
+        let choose = document.createElement("select");
+        for (let i=0; i<this.comparators.length; i++) {
+            let option = document.createElement("option");
+            option.value = this.comparators[i];
+            option.innerHTML = this.comparators[i];
+            choose.append(option);
+        }
+        choose.addEventListener("change", () => {
+            this.comparator = choose.value;
+        })
+        
+        choose.innerHTML += "<option value='' selected></option>";
+        let input2 = document.createElement("input");
+        input2.type = "text";
+        input2.placeholder = "Variable/value";
+        input2.addEventListener("change", () => {
+            this.var2 = input2.value;
+        })
+        let wrapper = document.createElement("div");
+        wrapper.classList.add("wrapper");
+        wrapper.appendChild(text);
+        wrapper.appendChild(input);
+        wrapper.appendChild(choose);
+        wrapper.appendChild(input2);
+        codeEl.appendChild(title);
+        codeEl.appendChild(wrapper);
+        let insideDiv = document.createElement("div");
+        insideDiv.classList.add("insideDiv");
+        codeEl.appendChild(insideDiv);
+        codeEl.addEventListener("drop", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const newNode = drop_handler(e);
+            this.children = [...this.children, newNode];
+
+        });
+        return codeEl;
+    }
+
+    generatePHPCode = function() {
+        let code = "elseif (" + this.var1 + " " + this.comparator + " " + this.var2 + ") {";
+        return code;
+    }
+
+}
+
+class Else {
+    id = "8";
+    text = "Else";
+
+    constructor() {
+        this.canHaveChildren = true;
+        this.children = [];
+        this.render = true;
+    }
+
+    makeDiv = function() {
+        let codeEl = document.createElement("div");
+        codeEl.classList.add("codeInstance");
+        codeEl.classList.add("elseCondition");
+        codeEl.classList.add("allowsNesting");
+        codeEl.id = this.id;
+        let title = document.createElement("p");
+        title.innerHTML = this.text;
+        title.classList.add("title");
+        let wrapper = document.createElement("div");
+        wrapper.classList.add("wrapper");
+        codeEl.appendChild(title);
+        codeEl.appendChild(wrapper);
+        let insideDiv = document.createElement("div");
+        insideDiv.classList.add("insideDiv");
+        codeEl.appendChild(insideDiv);
+        codeEl.addEventListener("drop", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const newNode = drop_handler(e);
+            this.children = [...this.children, newNode];
+
+        });
+        return codeEl;
+    }
+
+    generatePHPCode = function() {
+        let code = "else {";
+        return code;
+    }
+
 }

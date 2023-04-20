@@ -9,12 +9,24 @@
     <title>CodeBlocks</title>
 </head>
 <body>
+    <div class="infoBar">
+        <p>NOTE: $name is a variable identified by name, "name" is a string with information name, and 10 is a number.</p>
+    </div>
     <div class="toolbar" id="toolbar"></div>
     <div class="body">
         <div id="codeBlocks" class="codeBlocks allowsNesting" ondrop="drop_handler(event)"
-        ondragover="dragover_handler(event)"></div>
-        <button onclick="generatePHP()">Generate PHP</button>
-        <div class="phpOutput" id="phpOutput"></div>
+        ondragover="dragover_handler(event)">
+            <h3>CodeBlocks</h3>
+        </div>
+        <button id="makePHP" onclick="generatePHP()">Generate PHP</button>
+        <div class="phpOutput" id="phpOutput">
+            <div class="phpCodeOutput" id="phpCodeOutput">
+                <h3>PHP Code</h3>
+            </div>
+            <div class="phpExecutionOutput" id="phpExecutionOutput">
+                <h3>PHP Output</h3>
+            </div>
+        </div>
     </div>
     <script src="index.js"></script>
     <script src="codeObjects.js"></script>

@@ -46,34 +46,23 @@ function dragstart_handler(ev) {
     ev.dataTransfer.setData("application/my-app", ev.target.id);
     ev.dataTransfer.effectAllowed = "move";
 }
+
 function dragover_handler(ev) {
     ev.preventDefault();
     ev.dataTransfer.dropEffect = "move";
 }
-function drop_handler(ev) {
-    ev.preventDefault();
-    const data = ev.dataTransfer.getData("application/my-app");
-    const source = document.getElementById(data);
-    const target = ev.target;
-    let codeBlock;
-    let index;
-    if (ev.target.classList.contains("insideDiv")) {
-        codeBlock = createCodeBlock(source, target);
-        index = ev.target.classList[1];
-    } else {
-        codeBlock = createCodeBlock(source, document.getElementById("codeBlocks"));
-    }
-    if (codeBlock.canHaveChildren) {
-        insideDivs += 1;
-    }
 
-    if (typeof(index) != 'undefined') {
-        globalObjs[index].children.push(codeBlock);
-    }
-    else {
+function drop_handler(e) {
+    e.preventDefault();
+    const data = e.dataTransfer.getData("application/my-app");
+    const source = document.getElementById(data);
+    const target = getFertileParent(e.target);
+    let codeBlock = createCodeBlock(source, target);
+    if (target == document.getElementById("codeBlocks")) {
         globalObjs.push(codeBlock);
-    }
-    
+    } else {
+        return codeBlock;
+    } 
 }
     
     
@@ -82,29 +71,40 @@ function createCodeBlock(source, target) {
     let codeBlock;
     switch (source.id) {
         case "0":
-            codeBlock = new variable(target);
+            codeBlock = new variable();
+            target.appendChild(codeBlock.makeDiv());
             return codeBlock;
         case "1":
-            codeBlock = new math(target);
+            codeBlock = new math();
+            target.appendChild(codeBlock.makeDiv());
             return codeBlock;
         case "2":
-            codeBlock = new func(target, insideDivs);
+            codeBlock = new func();
+            target.appendChild(codeBlock.makeDiv());
             return codeBlock;
         case "3":
-            codeBlock = new forLoop(target, insideDivs);
+            codeBlock = new forLoop();
+            target.appendChild(codeBlock.makeDiv());
             return codeBlock;
         case "4":
-            codeBlock = new condition(target, insideDivs);
+            codeBlock = new condition();
+            target.appendChild(codeBlock.makeDiv());
             return codeBlock;
         case "5":
-            codeBlock = new print(target);
+            codeBlock = new print();
+            target.appendChild(codeBlock.makeDiv());
             return codeBlock;
         case "6":
-            codeBlock = new funcCall(target, globalObjs);
+            codeBlock = new funcCall();
+            target.appendChild(codeBlock.makeDiv());
             return codeBlock;
     }
 }
 
+function getFertileParent(node) {
+    if (node.classList.contains("allowsNesting"))return node;
+    else return getFertileParent(node.parentNode);
+}
 
 function getAllFunctions() {
     funcs = [];

@@ -1,0 +1,117 @@
+@import url("https://cdn.jsdelivr.net/npm/@xz/fonts@1/serve/hk-grotesk.min.css");
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'HK Grotesk', sans-serif;
+}
+
+body {
+    background-color: #ffffff;
+}
+
+.toolbar {
+    height: 100px;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+}
+
+.body {
+    display: flex;
+    flex-direction: row;
+}
+
+.codeBlocks {
+    width: 50%;
+    background-color: #ffffff;
+    margin: 10px;
+    border-radius: 10px;
+    height: 600px;
+    border-right: 1px solid #8b8b8b;
+}
+
+.codeElement {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    background-color: #8b8b8b;
+    margin: 10px;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.codeInstance {
+    display: flex;
+    position: relative;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    align-items: center;
+    border-radius: 10px;
+    background-color: #8b8b8b;
+    margin-right: 30px;
+    margin-bottom: 10px;
+    padding: 20px;
+    padding-top: 35px;
+}
+
+.codeInstance > * {
+    margin: 5px;
+    font-weight: bold;
+}
+
+.codeInstance input, select {
+    border: none;
+    width: 100px;
+    border-radius: 30px;
+    height: 30px;
+    font-size: 1rem;
+    padding: 5px;
+}
+
+.params > input {
+    margin-left: 10px;
+}
+
+.codeInstance > select {
+    width: 70px;
+}
+.codeInstance > button {
+    border: none;
+    border-radius: 30px;
+    height: 30px;
+    width: 50px;
+    font-size: 1rem;
+    background-color: #ffffff;
+    color: #8b8b8b;
+    font-weight: bold;
+}
+
+.codeInstance > .title {
+    font-size: 1rem;
+    font-weight: bold;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+}
+
+.codeInstance.print{
+    background-color: rgba(0, 255, 255,0.5);
+}
+
+.phpOutput {
+    padding: 20px;
+}
+
+.insideDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    background-color: rgba(255, 0, 55, 0.5);
+    margin-right: 30px;
+    margin-bottom: 10px;
+    padding: 10px;
+}

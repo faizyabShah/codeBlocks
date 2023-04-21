@@ -664,10 +664,10 @@ class fileWrite {
             this.fileName = input.value;
         })
         let text2 = document.createElement("p");
-        text2.innerHTML = "text: ";
+        text2.innerHTML = "data: ";
         let input2 = document.createElement("input");
         input2.type = "text";
-        input2.placeholder = "Enter Text";
+        input2.placeholder = "text/variable";
         input2.addEventListener("change", () => {
             this.string = input2.value;
         })
@@ -683,7 +683,7 @@ class fileWrite {
     }
 
     generatePHPCode = function() {
-        let code = 'file_put_contents("' + this.fileName + '", "' + this.string + '");';
+        let code = 'file_put_contents("' + this.fileName + '", ' + this.string + ');';
         return code;
     }
 }

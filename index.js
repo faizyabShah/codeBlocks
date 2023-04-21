@@ -21,9 +21,7 @@ function _generatePHP (arr, indent = "") {
 
 function generatePHP(arr = globalObjs) {
     let code = _generatePHP(arr);
-    code = code.replace(/ /g, "&nbsp;");
-    document.getElementById("phpCodeOutput").innerHTML = `<h3> PHP Code </h3>`;
-    document.getElementById("phpCodeOutput").innerHTML += code;
+    document.getElementById("phpCodeOutput").innerHTML = code;
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -139,4 +137,22 @@ function getAllFunctions() {
         }
     }
     return funcs;
+}
+
+function executePHP() {
+    let code = document.getElementById("phpCodeOutput").innerText;
+    console.log(code);
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "execute.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("code=" + encodeURIComponent(code));
+    console.log(xhr);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          
+            document.getElementById("phpExecutionOutput").innerHTML = xhr.responseText;
+        }
+      };
+
+
 }

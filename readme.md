@@ -10,13 +10,18 @@ HTML/CSS have been used for the styling whereas Javascript has been used for the
 
 Different components of PHP language have been implemented. These are:
 
+### Compoenents that allow nesting
+
 - Conditional statements
-- Functions and function calls
-- Arithmetic operations
-- File handling
-- Variable declaration and printing
+- Functions
 - Loops
 
+### Components that do not allow nesting
+
+- Function calls
+- Variable declaration and printing
+- Arithmetic operations
+- File handling
 ## Symantics
 
 - $ (dollar sign) followed by a name, such as $name, represents a variable.
@@ -34,3 +39,8 @@ This repository shall be cloned into the htdocs folder of XAMMP or the www folde
 ## GUI
 
 The toolbar is at the top which contains all the draggable components of the code. The components are to be dragged into the left pane of the window. The right side contains areas for PHP code and PHP output.
+
+![image](https://user-images.githubusercontent.com/101542222/233696726-02634c18-e1c3-42b0-95a5-fd1c52bd8744.png)
+
+
+

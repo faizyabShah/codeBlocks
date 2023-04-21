@@ -26,3 +26,11 @@ Different components of PHP language have been implemented. These are:
 Unless the type is specifically mentioned in the placeholder text of input fields, the above conventions have to be kept in mind when entering data.
 
 If specifically mentioned in the input fields as to what is required, then only the value shall be written and the symantics will be taken care of by the program.
+
+## How to run
+
+This repository shall be cloned into the htdocs folder of XAMMP or the www folder of WAMP. After that, go to localhost on your webbrowser and run the program.
+
+## GUI
+
+The toolbar is at the top which contains all the draggable components of the code. The components are to be dragged into the left pane of the window. The right side contains areas for PHP code and PHP output.

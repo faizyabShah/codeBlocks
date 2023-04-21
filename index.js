@@ -121,23 +121,22 @@ function getFertileParent(node) {
     else return getFertileParent(node.parentNode);
 }
 
-function getAllFunctions() {
+
+function getAllFunctions(arr) {
     funcs = [];
-    for (let i=0; i<globalObjs.length; i++) {
-        if (globalObjs[i].canHaveChildren && globalObjs[i].children.length > 0) {
-            if (globalObjs[i].id == "2") {
-                funcs.push(globalObjs[i]);
+    for (let i=0; i<arr.length; i++) {
+        if (arr[i].id == "2") {
+            funcs.push(arr[i]);
+            console.log("added one");
+            if (arr[i].children.length > 0) {
+                funcs = [... funcs, ... getAllFunctions((arr[i]).children)];
             }
-            funcs.push(getAllFunctions(globalObjs[i].children));
-        }
-        else {
-            if (globalObjs[i].id == "2") {
-                funcs.push(globalObjs[i]);
-            }
-        }
     }
+}
     return funcs;
 }
+
+
 
 function executePHP() {
     let code = document.getElementById("phpCodeOutput").innerText;

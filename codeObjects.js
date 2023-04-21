@@ -407,7 +407,9 @@ class funcCall {
         let params = document.createElement("div");
         params.classList.add("params");
         let select = document.createElement("select");
-        let funcs = getAllFunctions();
+        let funcs = getAllFunctions(globalObjs);
+        console.log(globalObjs);
+        console.log(funcs);
         for (let i=0; i<funcs.length; i++) {
             let option = document.createElement("option");
             option.value = funcs[i].name;

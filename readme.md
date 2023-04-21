@@ -42,5 +42,18 @@ The toolbar is at the top which contains all the draggable components of the cod
 
 ![image](https://user-images.githubusercontent.com/101542222/233696726-02634c18-e1c3-42b0-95a5-fd1c52bd8744.png)
 
+- A simple program that shows the functionality of print, conditional and function blocks. This program takes two numbers as input and gives the maximum number as output:
+
+![Untitled](https://user-images.githubusercontent.com/101542222/233697597-ed3ff9f9-55ea-4304-88a8-a91e9c767634.jpg)
+
+- This sample program shows the function of loops and arithmetic operations, as well as variable declaration.
+
+![image](https://user-images.githubusercontent.com/101542222/233697935-4c99a5d3-3cd1-4d06-9320-412859f96daa.png)
+
+
+- This sample program shows basic file handling:
+
+![image](https://user-images.githubusercontent.com/101542222/233698697-8797601a-95b5-44ef-9cc4-962a7990fb2a.png)
+
 
 

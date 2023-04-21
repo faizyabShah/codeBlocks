@@ -1,3 +1,6 @@
+// Data where the blocks in the toolbar are rendered from 
+
+
 let codeBlocks = [
     {
         id : "0",

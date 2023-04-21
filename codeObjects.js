@@ -1,4 +1,15 @@
 
+
+// Each code object is a class. 
+//nEach class has a makeDiv() function that returns a div element with 
+//the code object's HTML. 
+//Each class also has a generatePHPCode() function that returns 
+//a string of PHP code.
+
+
+// In addition, classes that allow nesting of elements also have a drop handler
+
+
 class variable {
     id = "0";
     text = "Variable";

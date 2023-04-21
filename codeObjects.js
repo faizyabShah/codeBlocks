@@ -116,8 +116,7 @@ class math {
     }
 
     generatePHPCode = function() {
-        return `
-        $${this.assignTo} = ${this.value1} ${this.operation} ${this.value2};
+        return `$${this.assignTo} = ${this.value1} ${this.operation} ${this.value2};
         `
     }
     
@@ -426,6 +425,7 @@ class funcCall {
                         console.log(j)
                         let input = document.createElement("input");
                         input.type = "text";
+                        input.placeholder = funcs[i].parameters[j];
                         input.addEventListener("change", () => {
                             this.parameters[this.parameters.length] = input.value;
                         })
@@ -445,6 +445,18 @@ class funcCall {
         wrapper.appendChild(params);
         codeEl.appendChild(wrapper);
         return codeEl;
+    }
+
+    generatePHPCode = function() {
+        let code = this.name + "(";
+        for (let i=0; i<this.parameters.length; i++) {
+            code += this.parameters[i];
+            if (i != this.parameters.length-1) {
+                code += ", ";
+            }
+        }
+        code += ");";
+        return code;
     }
 }
 
@@ -567,4 +579,109 @@ class Else {
         return code;
     }
 
+}
+
+class fileRead {
+    id= "9";
+    text = "File Read";
+
+    constructor() {
+        this.canHaveChildren = false;
+        this.render = true;
+        this.var1 = "";
+        this.fileName = "";
+    }
+
+    makeDiv = function() {
+        let codeEl = document.createElement("div");
+        codeEl.classList.add("codeInstance");
+        codeEl.classList.add("fileRead");
+        codeEl.id = this.id;
+        let title = document.createElement("p");
+        title.innerHTML = this.text;
+        title.classList.add("title");
+        let text1 = document.createElement("p");
+        text1.innerHTML = "Store in:";
+        let input = document.createElement("input");
+        input.type = "text";
+        input.placeholder = "Variable";
+        input.addEventListener("change", () => {
+            this.var1 = input.value;
+        })
+        let text2 = document.createElement("p");
+        text2.innerHTML = "From: ";
+        let input2 = document.createElement("input");
+        input2.type = "text";
+        input2.placeholder = "File Name";
+        input2.addEventListener("change", () => {
+            this.fileName = input2.value;
+        })
+        let wrapper = document.createElement("div");
+        wrapper.classList.add("wrapper");
+        wrapper.appendChild(text1);
+        wrapper.appendChild(input);
+        wrapper.appendChild(text2);
+        wrapper.appendChild(input2);
+        codeEl.appendChild(title);
+        codeEl.appendChild(wrapper);
+        return codeEl;
+    }
+
+    generatePHPCode = function() {
+        let code = "$" + this.var1 + ' = file_get_contents("' + this.fileName + '");';
+        return code;
+    }
+
+}
+
+class fileWrite {
+    id= "9";
+    text = "File Write";
+
+    constructor() {
+        this.canHaveChildren = false;
+        this.render = true;
+        this.string = "";
+        this.fileName = "";
+    }
+
+    makeDiv = function() {
+        let codeEl = document.createElement("div");
+        codeEl.classList.add("codeInstance");
+        codeEl.classList.add("fileWrite");
+        codeEl.id = this.id;
+        let title = document.createElement("p");
+        title.innerHTML = this.text;
+        title.classList.add("title");
+        let text1 = document.createElement("p");
+        text1.innerHTML = "Write to: ";
+        let input = document.createElement("input");
+        input.type = "text";
+        input.placeholder = "File Name";
+        input.addEventListener("change", () => {
+            this.fileName = input.value;
+        })
+        let text2 = document.createElement("p");
+        text2.innerHTML = "text: ";
+        let input2 = document.createElement("input");
+        input2.type = "text";
+        input2.placeholder = "Enter Text";
+        input2.addEventListener("change", () => {
+            this.string = input2.value;
+        })
+        let wrapper = document.createElement("div");
+        wrapper.classList.add("wrapper");
+        wrapper.appendChild(text1);
+        wrapper.appendChild(input);
+        wrapper.appendChild(text2);
+        wrapper.appendChild(input2);
+        codeEl.appendChild(title);
+        codeEl.appendChild(wrapper);
+        return codeEl;
+    }
+
+    generatePHPCode = function() {
+        let code = 'file_put_contents("' + this.fileName + '", "' + this.string + '");';
+        return code;
+    }
 }

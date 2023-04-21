@@ -18,7 +18,11 @@
         ondragover="dragover_handler(event)">
             <h3>CodeBlocks</h3>
         </div>
-        <button id="makePHP" onclick="generatePHP()">Generate PHP</button>
+        <div id="buttons">
+            <button class="somethingPHP" id="makePHP" onclick="generatePHP()">Generate PHP</button>
+            <button class= "somethingPHP" id="runPHP" onclick="executePHP()">Execute PHP</button>
+        </div>
+        
         <div class="phpOutput" id="phpOutput">
             <div class="phpCodeOutput" id="phpCodeOutput">
                 <h3>PHP Code</h3>

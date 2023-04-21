@@ -31,7 +31,7 @@ body {
     flex-direction: row;
 }
 
-#makePHP {
+.somethingPHP {
     height: 50px;
     border: none;
     border-radius: 25px;
@@ -41,9 +41,17 @@ body {
     background-color: #e3e3e3;
 }
 
-#makePHP:hover {
+.somethingPHP:hover {
     background-color: #757575;
     cursor: pointer;
+}
+
+#buttons {
+    width: 100px;
+}
+
+#runPHP {
+    margin-top: 200px;
 }
 
 input::placeholder {
@@ -55,13 +63,14 @@ input::placeholder {
     width: 45%;
     background-color: #ffffff;
     margin: 10px;
-    height: 600px;
+    min-height: 600px;
     border-right: 1px solid #8b8b8b;
 }
 
 .codeBlocks > h3 {
     text-align: center;
     font-size: 1.5rem;
+    margin-bottom: 5px;
 }
 
 .phpOutput {
@@ -86,6 +95,10 @@ input::placeholder {
     margin: 10px;
     padding: 10px;
     font-weight: bold;
+}
+
+.codeElement:hover {
+    cursor: pointer;
 }
 
 .codeInstance {
@@ -180,6 +193,13 @@ input::placeholder {
 
 .codeInstance.funcCall {
     background-color: rgb(106, 156, 255);
+}
+
+.codeInstance.fileRead {
+    background-color: rgb(106, 255, 218);
+}
+.codeInstance.fileWrite {
+    background-color: rgb(106, 255, 218);
 }
 
 .codeInstance .wrapper {

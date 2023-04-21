@@ -22,7 +22,8 @@ function _generatePHP (arr, indent = "") {
 function generatePHP(arr = globalObjs) {
     let code = _generatePHP(arr);
     code = code.replace(/ /g, "&nbsp;");
-    document.getElementById("phpCodeOutput").innerHTML = code;
+    document.getElementById("phpCodeOutput").innerHTML = `<h3> PHP Code </h3>`;
+    document.getElementById("phpCodeOutput").innerHTML += code;
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -104,6 +105,14 @@ function createCodeBlock(source, target) {
             return codeBlock;
         case "8":
             codeBlock = new Else();
+            target.appendChild(codeBlock.makeDiv());
+            return codeBlock;
+        case "9":
+            codeBlock = new fileRead();
+            target.appendChild(codeBlock.makeDiv());
+            return codeBlock;
+        case "10":
+            codeBlock = new fileWrite();
             target.appendChild(codeBlock.makeDiv());
             return codeBlock;
     }
